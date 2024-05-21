@@ -1,7 +1,14 @@
-import React from "react";
+import styles from "./footer.module.css";
 
-const Footer = (props) => {
-  return <div>Footer</div>;
+const Footer = () => {
+  return (
+    <div className={styles.container}>
+      <div className={styles.logo}>Logo</div>
+      <div className={styles.text}>
+        Creative Thoughts Agency© All rights reserved.
+      </div>
+    </div>
+  );
 };
 
 export default Footer;
