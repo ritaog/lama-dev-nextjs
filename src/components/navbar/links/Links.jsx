@@ -1,14 +1,15 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import styles from "./links.module.css";
-import NavLink from "./navLink/NavLink";
+import { useState } from 'react';
+import Image from 'next/image';
+import styles from './links.module.css';
+import NavLink from './navLink/NavLink';
 
 const links = [
-  { title: "Homepage", path: "/" },
-  { title: "About", path: "/about" },
-  { title: "Contact", path: "/contact" },
-  { title: "Blog", path: "/blog" },
+  { title: 'Homepage', path: '/' },
+  { title: 'About', path: '/about' },
+  { title: 'Contact', path: '/contact' },
+  { title: 'Blog', path: '/blog' },
 ];
 
 const Links = () => {
@@ -23,19 +24,21 @@ const Links = () => {
         ))}
         {session ? (
           <>
-            {isAdmin && <NavLink item={{ title: "Admin", path: "/admin" }} />}
+            {isAdmin && <NavLink item={{ title: 'Admin', path: '/admin' }} />}
             <button className={styles.logout}>Logout</button>
           </>
         ) : (
-          <NavLink item={{ title: "Login", path: "/login" }} />
+          <NavLink item={{ title: 'Login', path: '/login' }} />
         )}
       </div>
-      <button
+      <Image
         className={styles.menuButton}
+        src="/menu.png"
+        alt=""
+        width={30}
+        height={30}
         onClick={() => setOpen((currState) => !currState)}
-      >
-        Menu
-      </button>
+      />
       {open && (
         <div className={styles.mobileLinks}>
           {links.map((link) => (
