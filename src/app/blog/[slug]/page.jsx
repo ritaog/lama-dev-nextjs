@@ -16,6 +16,16 @@ import { getPost } from '@/lib/data';
 //   return data;
 // };
 
+//Generate MetaData dynamically
+export const generateMetadata = async ({ params }) => {
+  const { title, desc } = await getPost(params.slug);
+
+  return {
+    title,
+    description: desc,
+  };
+};
+
 const SinglePostPage = async ({ params }) => {
   // FETCH DATA WITH AN API
   //const post = await getData(params.slug);
