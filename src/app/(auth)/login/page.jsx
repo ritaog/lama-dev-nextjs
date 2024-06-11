@@ -1,5 +1,11 @@
 const LoginPage = () => {
-  return <div>Login Page</div>;
+  return (
+    <div>
+      <form action="">
+        <button>Login with Github</button>
+      </form>
+    </div>
+  );
 };
 
 export default LoginPage;

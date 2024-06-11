@@ -4,9 +4,9 @@ import styles from './singlePost.module.css';
 import PostUser from '@/components/postUser/postUser';
 import { getPost } from '@/lib/data';
 
-// FETCH DATA WITH AN API
+//FETCH DATA WITH A THIRD PARTY  API
 // const getData = async (slug) => {
-//   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`, { cache: 'no-store' });
+//   const res = await fetch(`http://jsonplaceholder.typicode.com/posts/${slug}`, { cache: 'no-store' });
 
 //   if (!res.ok) {
 //     throw new Error('something went wrong!');
@@ -15,6 +15,31 @@ import { getPost } from '@/lib/data';
 //   const data = await res.json();
 //   return data;
 // };
+
+//DELETE DATA WITH AN API FROM MONGODB
+// const getData = async (slug) => {
+//   const res = await fetch(`http://localhost:3000/api/blog/${slug}`, { cache: 'no-store' }, { METHOD: 'DELETE' });
+
+//   if (!res.ok) {
+//     throw new Error('something went wrong!');
+//   }
+
+//   const data = await res.json();
+//   return data;
+// };
+
+//FETCH DATA WITH AN API FROM MONGODB
+const getData = async (slug) => {
+  // const res = await fetch(`http://jsonplaceholder.typicode.com/posts/${slug}`, { cache: 'no-store' });
+  const res = await fetch(`http://localhost:3000/api/blog/${slug}`, { cache: 'no-store' });
+
+  if (!res.ok) {
+    throw new Error('something went wrong!');
+  }
+
+  const data = await res.json();
+  return data;
+};
 
 //Generate MetaData dynamically
 export const generateMetadata = async ({ params }) => {
@@ -27,13 +52,12 @@ export const generateMetadata = async ({ params }) => {
 };
 
 const SinglePostPage = async ({ params }) => {
-  // FETCH DATA WITH AN API
-  //const post = await getData(params.slug);
+  // FETCH DATA WITHOUT AN API (Check data.js file)
+  //const post = await getPost(params.slug);
 
-  //const { userId, title, body } = post;
+  // FETCH DATA WITH AN API (Use data from a third party API or from MongoDB set up.)
+  const post = await getData(params.slug);
 
-  // FETCH DATA WITHOUT AN API
-  const post = await getPost(params.slug);
   const { title, desc, userId, img, createdAt } = post;
 
   return (
